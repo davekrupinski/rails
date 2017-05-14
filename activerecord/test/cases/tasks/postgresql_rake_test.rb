@@ -260,7 +260,7 @@ if current_adapter?(:PostgreSQLAdapter)
       end
 
       def test_structure_dump_with_ignore_tables
-        ActiveRecord::SchemaDump.expects(:ignore_tables).returns([:foo, "bar"])
+        ActiveRecord::SchemaDumper.expects(:ignore_tables).returns(["foo", "bar"])
 
         Kernel.expects(:system).with("pg_dump", "-s", "-x", "-O", "-f", @filename, "-T", "foo", "-T", "bar", "my-app-db").returns(true)
 
